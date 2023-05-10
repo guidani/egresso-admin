@@ -24,7 +24,7 @@ export default function Page() {
         <BackButton/>
         <h1 className="mt-4 mb-2 text-2xl">Adicionar novo curso</h1>
         <hr />
-        <div className="bg-white px-16 py-4 border-t-8 border-green-700">
+        <div className="bg-white px-4 md:px-16 py-4 border-t-8 border-green-700">
           <div id="form" className="flex flex-col">
             <label htmlFor="nomeCurso">Nome do curso</label>
             <input
