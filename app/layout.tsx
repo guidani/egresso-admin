@@ -12,11 +12,12 @@ export const metadata = {
   description: "Painel administrativo do sistema de egressos.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  
   return (
     <html lang="pt-br">
       <body className={inter.className}>

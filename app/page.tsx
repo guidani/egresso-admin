@@ -1,6 +1,9 @@
 import LinkButton from "./components/LinkButton";
 
-export default function Home() {
+export default async function Home() {
+  const data = await getData();
+  console.log("🚀 ~ file: page.tsx:5 ~ Home ~ data:", data);
+
   return (
     <main className="flex min-h-screen flex-col px-2">
       <h1 className="mt-4 mb-2 text-2xl">Painel Administrativo</h1>
