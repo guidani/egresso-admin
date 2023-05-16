@@ -1,3 +1,4 @@
+import Comp from "./Comp";
 import LinkButton from "./components/LinkButton";
 import getData from "./services/getData";
 
@@ -14,14 +15,16 @@ export default async function Home() {
         <LinkButton to="/egressos" label="Egressos" />
       </div>
       <div>
-        {data.map((item) => {
+        {/* {data.map((item) => {
           return (
             <div key={item.id}>
               <p>{item.name}</p>
               <p>{item.email}</p>
             </div>
           );
-        })}
+        })} */}
+        
+        <Comp dados={data}/>
       </div>
     </main>
   );
