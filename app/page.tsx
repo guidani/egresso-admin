@@ -14,18 +14,9 @@ export default async function Home() {
         <LinkButton to="/campus" label="Campus" />
         <LinkButton to="/egressos" label="Egressos" />
       </div>
-      <div>
-        {/* {data.map((item) => {
-          return (
-            <div key={item.id}>
-              <p>{item.name}</p>
-              <p>{item.email}</p>
-            </div>
-          );
-        })} */}
-        
+      {/* <div>
         <Comp dados={data}/>
-      </div>
+      </div> */}
     </main>
   );
 }

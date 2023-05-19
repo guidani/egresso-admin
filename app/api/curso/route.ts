@@ -1,0 +1,45 @@
+import prisma from "@/lib/prisma";
+import { NextResponse } from "next/server";
+
+type Curso = {
+  id: string;
+  name: string;
+};
+
+export async function GET() {
+  try {
+    return NextResponse.json({ msg: "Hello" });
+  } catch (error) {
+    return NextResponse.json({ msg: "Error" });
+  }
+}
+
+export async function POST(request: Request) {
+  try {
+    const { name }: Partial<Curso> = await request.json();
+    if (!name) return NextResponse.json({ message: "Nome necessário" });
+
+    const resp = await prisma.curso.create({
+      data: {
+        name: name,
+      },
+    });
+    return NextResponse.json({ message: `Curso criado com o id ${resp.id}` });
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function DELETE(request: Request) {
+  const { id }: Partial<Curso> = await request.json();
+
+  if (!id) return NextResponse.json({ message: "ID necessário" });
+
+  await prisma.curso.delete({
+    where: {
+      id: id,
+    },
+  });
+
+  return NextResponse.json({ message: "Curso deletado" });
+}

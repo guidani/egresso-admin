@@ -17,3 +17,15 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Curso {
+  id    String  @id @default(auto()) @map("_id") @db.ObjectId
+  name  String?
+  createdAt DateTime? @default(now())
+}
+
+model Campus {
+  id    String  @id @default(auto()) @map("_id") @db.ObjectId
+  name  String
+  createdAt DateTime? @default(now())
+}
