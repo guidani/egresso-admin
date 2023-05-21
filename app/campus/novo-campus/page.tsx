@@ -4,18 +4,28 @@ import Link from "next/link";
 import { ChangeEvent, useState } from "react";
 
 export default function Page() {
-  const [valor, setValor] = useState("");
+  const [name, setName] = useState("");
   async function addCampusToDatabase() {
-    if (valor.trim() == "") {
+    if (name.trim() == "") {
       window.alert("Insira o nome do campus.");
       return;
+    } else {
+      try {
+        const body = { name };
+        await fetch("http://localhost:3000/api/campus", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
+      } catch (error) {
+        return JSON.stringify({msg: "Ocorreu um erro inesperado. Tente novamente."})
+      }
     }
-    window.alert(valor.trim());
   }
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     
-    setValor(e.target.value);
+    setName(e.target.value);
   }
 
   return (

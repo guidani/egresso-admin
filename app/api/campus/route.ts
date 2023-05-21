@@ -13,6 +13,7 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const { name }: Partial<Campus> = await request.json();
+    console.log("🚀 ~ file: route.ts:16 ~ POST ~ name:", name)
     if (!name) return NextResponse.json({ message: "Nome necessário" });
 
     const resp = await prisma.campus.create({
