@@ -2,7 +2,14 @@ import BackButton from "../components/BackButton";
 import LinkButton from "../components/LinkButton";
 import IconTrash from "../components/icons/IconTrash";
 
-export default function Page() {
+export default async function Page() {
+  const cursos = await fetch("http://localhost:3000/api/curso", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  
   return (
     <>
       <div className="flex min-h-screen flex-col px-2">
@@ -14,11 +21,12 @@ export default function Page() {
         </div>
         <div className="bg-white p-2 border-t-8 border-green-700 mt-4">
           <ul>
+            
             <li className=" border-b-2 border-slate-100 flex items-center justify-between py-2">
               Bacharelado em Adminitração <IconTrash />
             </li>
             <li className=" border-b-2 border-slate-100 flex items-center justify-between py-2">
-              Licenciatura em Informática  <IconTrash />
+              Licenciatura em Informática <IconTrash />
             </li>
             <li>item</li>
           </ul>

@@ -19,15 +19,6 @@ export default function Page() {
     }
   }
 
-  // async function addCursoToDatabase() {
-  //   if (name.trim() == "") {
-  //     window.alert("Insira o nome do curso.");
-  //     return;
-  //   } else {
-  //     // await add_curso(name)
-  //   }
-  // }
-
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     setName(e.target.value);
   }

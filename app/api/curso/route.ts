@@ -8,7 +8,8 @@ type Curso = {
 
 export async function GET() {
   try {
-    return NextResponse.json({ msg: "Hello" });
+    const resp = await prisma.curso.findMany()
+    return NextResponse.json({ resp });
   } catch (error) {
     return NextResponse.json({ msg: "Error" });
   }
