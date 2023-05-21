@@ -1,15 +1,10 @@
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
-type Curso = {
-  id: string;
-  name: string;
-};
-
 export async function GET() {
   try {
     const resp = await prisma.curso.findMany()
-    return NextResponse.json({ resp });
+    return NextResponse.json(resp);
   } catch (error) {
     return NextResponse.json({ msg: "Error" });
   }
