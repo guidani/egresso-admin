@@ -15,7 +15,7 @@ export default function Page() {
         body: JSON.stringify(body),
       });
     } catch (error) {
-      console.error(error);
+      return JSON.stringify({msg: "Ocorreu um erro inesperado. Tente novamente."})
     }
   }
 

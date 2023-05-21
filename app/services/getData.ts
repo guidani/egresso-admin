@@ -5,7 +5,8 @@ export default async function getData(): Promise<any> {
     const data = await prisma.user.findMany();
     return data;
   } catch (error) {
-    console.log("🚀 ~ file: getData.ts:5 ~ getData ~ error:", error);
-    return { error };
+    return JSON.stringify({
+      msg: "Ocorreu um erro inesperado. Tente novamente.",
+    });
   }
 }

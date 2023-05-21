@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    const resp = await prisma.curso.findMany()
+    const resp = await prisma.campus.findMany();
     return NextResponse.json(resp);
   } catch (error) {
     return NextResponse.json({ msg: "Error" });
@@ -12,31 +12,30 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
-    const { name }: Partial<Curso> = await request.json();
+    const { name }: Partial<Campus> = await request.json();
     if (!name) return NextResponse.json({ message: "Nome necessário" });
 
-    const resp = await prisma.curso.create({
+    const resp = await prisma.campus.create({
       data: {
         name: name,
       },
     });
-    return NextResponse.json({ message: `Curso criado com o id ${resp.id}` });
+    return NextResponse.json({ message: `campus criado com o id ${resp.id}` });
   } catch (error) {
     return NextResponse.json({ message: `Ocorreu um erro inesperado! Tente novamente.` });
-
   }
 }
 
 export async function DELETE(request: Request) {
-  const { id }: Partial<Curso> = await request.json();
+  const { id }: Partial<Campus> = await request.json();
 
   if (!id) return NextResponse.json({ message: "ID necessário" });
 
-  await prisma.curso.delete({
+  await prisma.campus.delete({
     where: {
       id: id,
     },
   });
 
-  return NextResponse.json({ message: "Curso deletado" });
+  return NextResponse.json({ message: "campus deletado" });
 }

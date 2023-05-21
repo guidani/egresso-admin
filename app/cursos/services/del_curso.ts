@@ -9,7 +9,7 @@ export default async function del_curso(curso_id: string): Promise<any> {
     });
     return data;
   } catch (error) {
-    console.log("🚀 ~ file: getData.ts:5 ~ getData ~ error:", error);
-    return { error };
+    return JSON.stringify({msg: "Ocorreu um erro inesperado. Tente novamente."})
+    
   }
 }

@@ -14,7 +14,7 @@ export default function Page() {
   }
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    // console.log(e.target.value);
+    
     setValor(e.target.value);
   }
 
