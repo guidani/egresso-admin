@@ -2,7 +2,15 @@ import BackButton from "../components/BackButton";
 import LinkButton from "../components/LinkButton";
 import IconTrash from "../components/icons/IconTrash";
 
-export default function Page() {
+export default async function Page() {
+  const resp = await fetch("http://localhost:3000/api/campus", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const campus: Campus[] = await resp.json();
+
   return (
     <>
       <div className="flex min-h-screen flex-col px-2">
@@ -14,13 +22,17 @@ export default function Page() {
         </div>
         <div className="bg-white p-2 border-t-8 border-green-700 mt-4">
           <ul>
-            <li className=" border-b-2 border-slate-100 flex items-center justify-between py-2">
-              Teresina Central <IconTrash />
-            </li>
-            <li className=" border-b-2 border-slate-100 flex items-center justify-between py-2">
-              Teresina Zona Sul <IconTrash />
-            </li>
-            <li>item</li>
+            {campus.map((camp) => {
+              return (
+                <li
+                  key={camp.id}
+                  className=" border-b-2 border-slate-100 flex items-center justify-between py-2"
+                >
+                  {camp.name}
+                  <IconTrash />
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>

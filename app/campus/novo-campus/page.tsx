@@ -18,13 +18,14 @@ export default function Page() {
           body: JSON.stringify(body),
         });
       } catch (error) {
-        return JSON.stringify({msg: "Ocorreu um erro inesperado. Tente novamente."})
+        return JSON.stringify({
+          msg: "Ocorreu um erro inesperado. Tente novamente.",
+        });
       }
     }
   }
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    
     setName(e.target.value);
   }
 

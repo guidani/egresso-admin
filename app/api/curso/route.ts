@@ -1,10 +1,13 @@
 import prisma from "@/lib/prisma";
-import { NextResponse } from "next/server";
+import { revalidateTag } from "next/cache";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
-    const resp = await prisma.curso.findMany()
-    return NextResponse.json(resp);
+    const resp = await prisma.curso.findMany();
+    const tag = request.nextUrl.searchParams.get("tag") || "";
+    revalidateTag(tag);
+    return NextResponse.json({ resp, revalidated: true, now: Date.now() });
   } catch (error) {
     return NextResponse.json({ msg: "Error" });
   }
@@ -22,21 +25,29 @@ export async function POST(request: Request) {
     });
     return NextResponse.json({ message: `Curso criado com o id ${resp.id}` });
   } catch (error) {
-    return NextResponse.json({ message: `Ocorreu um erro inesperado! Tente novamente.` });
-
+    return NextResponse.json({
+      message: `Ocorreu um erro inesperado! Tente novamente.`,
+    });
   }
 }
 
 export async function DELETE(request: Request) {
-  const { id }: Partial<Curso> = await request.json();
+  try {
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get("id") || "";
 
-  if (!id) return NextResponse.json({ message: "ID necessário" });
+    if (!id) return NextResponse.json({ message: "ID necessário" });
 
-  await prisma.curso.delete({
-    where: {
-      id: id,
-    },
-  });
+    await prisma.curso.delete({
+      where: {
+        id,
+      },
+    });
 
-  return NextResponse.json({ message: "Curso deletado" });
+    return NextResponse.json({ message: "Curso deletado!" });
+  } catch (error) {
+    return NextResponse.json({
+      message: `Ocorreu um erro inesperado! Tente novamente. ${error}`,
+    });
+  }
 }

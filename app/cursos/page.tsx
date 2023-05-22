@@ -1,6 +1,7 @@
 import BackButton from "../components/BackButton";
 import LinkButton from "../components/LinkButton";
 import IconTrash from "../components/icons/IconTrash";
+import DelBtn from "./components/DelBtn";
 
 export default async function Page() {
   const resp = await fetch("http://localhost:3000/api/curso", {
@@ -8,9 +9,13 @@ export default async function Page() {
     headers: {
       "Content-Type": "application/json",
     },
+    next: {
+      tags: ["collection"],
+    },
   });
-  const cursos: Curso[] = await resp.json();
-  
+
+  const json = await resp.json();
+  const cursos: Curso[] = json.resp;
 
   return (
     <>
@@ -31,6 +36,7 @@ export default async function Page() {
                 >
                   {curso.name}
                   <IconTrash />
+                  <DelBtn id={curso.id} />
                 </li>
               );
             })}
