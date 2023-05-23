@@ -5,9 +5,8 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(request: NextRequest) {
   try {
     const resp = await prisma.curso.findMany();
-    const tag = request.nextUrl.searchParams.get("tag") || "";
-    revalidateTag(tag);
-    return NextResponse.json({ resp, revalidated: true, now: Date.now() });
+    console.log("🚀 ~ file: route.ts:8 ~ GET ~ resp:", resp)
+    return NextResponse.json(resp);
   } catch (error) {
     return NextResponse.json({ msg: "Error" });
   }

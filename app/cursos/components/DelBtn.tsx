@@ -7,7 +7,7 @@ export default function DelBtn({ id }: { id: string }) {
   async function del_curso(curso_id: string): Promise<any> {
     try {
       const resp = await fetch(
-        "http://localhost:3000/api/curso" + `?id=${curso_id}`,
+        `${process.env.NEXT_PUBLIC_HOST_URL}/api/curso` + `?id=${curso_id}`,
         {
           method: "DELETE",
         }

@@ -9,7 +9,7 @@ export default function Page() {
   async function fetchCursoToDatabase() {
     try {
       const body = { name };
-      await fetch("http://localhost:3000/api/curso", {
+      await fetch(`${process.env.NEXT_PUBLIC_HOST_URL}/api/curso`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),

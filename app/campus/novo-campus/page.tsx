@@ -12,7 +12,7 @@ export default function Page() {
     } else {
       try {
         const body = { name };
-        await fetch("http://localhost:3000/api/campus", {
+        await fetch(`${process.env.NEXT_PUBLIC_HOST_URL}/api/campus`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body),

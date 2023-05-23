@@ -4,18 +4,17 @@ import IconTrash from "../components/icons/IconTrash";
 import DelBtn from "./components/DelBtn";
 
 export default async function Page() {
-  const resp = await fetch("http://localhost:3000/api/curso", {
+  const resp = await fetch(`${process.env.NEXT_PUBLIC_HOST_URL}/api/curso`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
-    next: {
-      tags: ["collection"],
-    },
+    
   });
+  
+  console.log("🚀 ~ file: page.tsx:9 ~ Page ~ resp:", resp)
+  const cursos: Curso[] = await resp.json();
 
-  const json = await resp.json();
-  const cursos: Curso[] = json.resp;
 
   return (
     <>

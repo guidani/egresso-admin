@@ -3,7 +3,7 @@ import LinkButton from "../components/LinkButton";
 import IconTrash from "../components/icons/IconTrash";
 
 export default async function Page() {
-  const resp = await fetch("http://localhost:3000/api/campus", {
+  const resp = await fetch(`${process.env.NEXT_PUBLIC_HOST_URL}/api/campus`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
