@@ -10,6 +10,9 @@ export default function DelBtn({ id }: { id: string }) {
         `${process.env.NEXT_PUBLIC_HOST_URL}/api/curso` + `?id=${curso_id}`,
         {
           method: "DELETE",
+          next: {
+            revalidate: 5
+          }
         }
       );
 

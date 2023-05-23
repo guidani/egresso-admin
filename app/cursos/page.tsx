@@ -6,6 +6,9 @@ import DelBtn from "./components/DelBtn";
 export default async function Page() {
   const resp = await fetch(`${process.env.NEXT_PUBLIC_HOST_URL}/api/curso`, {
     method: "GET",
+    next: {
+      revalidate: 5
+    },
     headers: {
       "Content-Type": "application/json",
     },

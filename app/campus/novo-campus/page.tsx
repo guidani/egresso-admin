@@ -5,27 +5,41 @@ import { ChangeEvent, useState } from "react";
 
 export default function Page() {
   const [name, setName] = useState("");
+  const [isEmpty, setIsEmpty] = useState<null | boolean>(null);
+
   async function addCampusToDatabase() {
-    if (name.trim() == "") {
-      window.alert("Insira o nome do campus.");
-      return;
-    } else {
+
       try {
+        if(!name){
+          setIsEmpty(true)
+          return;
+        }
         const body = { name };
-        await fetch(`${process.env.NEXT_PUBLIC_HOST_URL}/api/campus`, {
+        const resp = await fetch(`${process.env.NEXT_PUBLIC_HOST_URL}/api/campus`, {
           method: "POST",
+          next: {
+            revalidate: 5
+          },
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body),
         });
+        if(resp.ok){
+          setName("")
+          if(confirm("Campus adicionado com sucesso!")){
+            setName("")
+            window.location.reload()
+          }
+        }
       } catch (error) {
         return JSON.stringify({
           msg: "Ocorreu um erro inesperado. Tente novamente.",
         });
       }
-    }
+    
   }
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    setIsEmpty(false);
     setName(e.target.value);
   }
 
@@ -42,9 +56,12 @@ export default function Page() {
               type="text"
               name="nomeCampus"
               id="nomeCampus"
-              className="border rounded-md border-slate-900"
+              autoFocus
+              className="border rounded-md border-slate-900 text-lg p-2"
               onChange={(e) => handleChange(e)}
             />
+            {isEmpty && <span className="text-red-500">Este campo não pode ser vazio</span>}
+
             <div className="flex gap-2 mt-2 justify-end">
               <Link href={"/campus"}>
                 <button className="bg-red-700 rounded-md px-8 py-2 text-white">
