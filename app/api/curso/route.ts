@@ -1,6 +1,6 @@
 import prisma from "@/lib/prisma";
 
-export async function GET(response: Response) {
+export async function GET() {
   try {
     const resp = await prisma.curso.findMany();
 
@@ -10,7 +10,7 @@ export async function GET(response: Response) {
   }
 }
 
-export async function POST(request: Request, response: Response) {
+export async function POST(request: Request) {
   try {
     const { name }: Partial<Curso> = await request.json();
     if (!name)
