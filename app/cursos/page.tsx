@@ -15,7 +15,6 @@ export default async function Page() {
     
   });
   
-  console.log("🚀 ~ file: page.tsx:9 ~ Page ~ resp:", resp)
   const cursos: Curso[] = await resp.json();
 
 

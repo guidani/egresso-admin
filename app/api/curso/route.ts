@@ -1,41 +1,53 @@
 import prisma from "@/lib/prisma";
-import { revalidateTag } from "next/cache";
-import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
+export async function GET(response: Response) {
   try {
     const resp = await prisma.curso.findMany();
-    console.log("🚀 ~ file: route.ts:8 ~ GET ~ resp:", resp)
-    return NextResponse.json(resp);
+
+    return new Response(JSON.stringify(resp), { status: 200 });
   } catch (error) {
-    return NextResponse.json({ msg: "Error" });
+    return new Response(JSON.stringify({ error: `${error}` }), { status: 500 });
   }
 }
 
-export async function POST(request: Request) {
+export async function POST(request: Request, response: Response) {
   try {
     const { name }: Partial<Curso> = await request.json();
-    if (!name) return NextResponse.json({ message: "Nome necessário" });
+    if (!name)
+      return new Response(
+        JSON.stringify({ message: "A propriedade [name] não foi encontrada." }),
+        { status: 400 }
+      );
 
     const resp = await prisma.curso.create({
       data: {
         name: name,
       },
     });
-    return NextResponse.json({ message: `Curso criado com o id ${resp.id}` });
+    return new Response(
+      JSON.stringify({ message: `Curso criado com o id ${resp.id}` }),
+      { status: 201 }
+    );
   } catch (error) {
-    return NextResponse.json({
-      message: `Ocorreu um erro inesperado! Tente novamente.`,
-    });
+    return new Response(
+      JSON.stringify({
+        message: "Ocorreu um erro inesperado! Tente novamente.",
+      }),
+      { status: 500 }
+    );
   }
 }
 
 export async function DELETE(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-    const id = searchParams.get("id") || "";
+    const id = await searchParams.get("id") || "";
 
-    if (!id) return NextResponse.json({ message: "ID necessário" });
+    if (!id)
+      return new Response(
+        JSON.stringify({ message: "A propriedade [id] não foi encontrada" }),
+        { status: 400 }
+      );
 
     await prisma.curso.delete({
       where: {
@@ -43,10 +55,15 @@ export async function DELETE(request: Request) {
       },
     });
 
-    return NextResponse.json({ message: "Curso deletado!" });
-  } catch (error) {
-    return NextResponse.json({
-      message: `Ocorreu um erro inesperado! Tente novamente. ${error}`,
+    return new Response(JSON.stringify({ message: "Curso deletado!" }), {
+      status: 200,
     });
+  } catch (error) {
+    return new Response(
+      JSON.stringify({
+        message: "Ocorreu um erro inesperado! Tente novamente.",
+      }),
+      { status: 500 }
+    );
   }
 }

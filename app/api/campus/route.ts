@@ -1,12 +1,11 @@
 import prisma from "@/lib/prisma";
-import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
     const resp = await prisma.campus.findMany();
-    return NextResponse.json(resp);
+    return new Response(JSON.stringify(resp), { status: 200 });
   } catch (error) {
-    return NextResponse.json({ msg: "Error" });
+    return new Response(JSON.stringify({ error: `${error}` }), { status: 500 });
   }
 }
 
@@ -14,31 +13,57 @@ export async function POST(request: Request) {
   try {
     const { name }: Partial<Campus> = await request.json();
 
-    if (!name) return NextResponse.json({ message: "Nome necessário" });
+    if (!name)
+      return new Response(
+        JSON.stringify({ message: "A propriedade [name] não foi encontrada." }),
+        { status: 400 }
+      );
 
     const resp = await prisma.campus.create({
       data: {
         name: name,
       },
     });
-    return NextResponse.json({ message: `campus criado com o id ${resp.id}` });
+    return new Response(
+      JSON.stringify({ message: `Campus criado com o id ${resp.id}` }),
+      { status: 201 }
+    );
   } catch (error) {
-    return NextResponse.json({
-      message: `Ocorreu um erro inesperado! Tente novamente.`,
-    });
+    return new Response(
+      JSON.stringify({
+        message: "Ocorreu um erro inesperado! Tente novamente.",
+      }),
+      { status: 500 }
+    );
   }
 }
 
 export async function DELETE(request: Request) {
-  const { id }: Partial<Campus> = await request.json();
+  try {
+    const { searchParams } = new URL(request.url);
+    const id = (await searchParams.get("id")) || "";
 
-  if (!id) return NextResponse.json({ message: "ID necessário" });
+    if (!id)
+      return new Response(
+        JSON.stringify({ message: "A propriedade [id] não foi encontrada" }),
+        { status: 400 }
+      );
 
-  await prisma.campus.delete({
-    where: {
-      id: id,
-    },
-  });
+    await prisma.campus.delete({
+      where: {
+        id,
+      },
+    });
 
-  return NextResponse.json({ message: "campus deletado" });
+    return new Response(JSON.stringify({ message: "Campus deletado!" }), {
+      status: 200,
+    });
+  } catch (error) {
+    return new Response(
+      JSON.stringify({
+        message: "Ocorreu um erro inesperado! Tente novamente.",
+      }),
+      { status: 500 }
+    );
+  }
 }
