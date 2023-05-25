@@ -3,16 +3,15 @@ import LinkButton from "../components/LinkButton";
 import IconTrash from "../components/icons/IconTrash";
 import DelBtn from "./components/DelBtn";
 
+export const revalidade = 0;
+
 export default async function Page() {
-  const resp = await fetch(`${process.env.NEXT_PUBLIC_HOST_URL}/api/curso`, {
+  // TODO ao invés de fazer GET aqui, puxar os dados direto do prisma dentro de uma função e chamar a função
+  const resp = await fetch("/api/curso", {
     method: "GET",
-    next: {
-      revalidate: 5
-    },
     headers: {
       "Content-Type": "application/json",
     },
-    
   });
   
   const cursos: Curso[] = await resp.json();

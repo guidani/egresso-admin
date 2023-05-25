@@ -15,11 +15,9 @@ export default function Page() {
           return;
         }
         const body = { name };
-        const resp = await fetch(`${process.env.NEXT_PUBLIC_HOST_URL}/api/campus`, {
+        const resp = await fetch("/api/campus", {
           method: "POST",
-          next: {
-            revalidate: 5
-          },
+         
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body),
         });

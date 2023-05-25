@@ -2,8 +2,11 @@ import BackButton from "../components/BackButton";
 import LinkButton from "../components/LinkButton";
 import IconTrash from "../components/icons/IconTrash";
 
+export const revalidade = 0;
+
 export default async function Page() {
-  const resp = await fetch(`${process.env.NEXT_PUBLIC_HOST_URL}/api/campus`, {
+   // TODO ao invés de fazer GET aqui, puxar os dados direto do prisma dentro de uma função e chamar a função
+  const resp = await fetch("/api/campus", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

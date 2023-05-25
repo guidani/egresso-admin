@@ -13,7 +13,6 @@ export default function Comp({dados}: {dados: Props[]}) {
       <option hidden disabled selected>Selecione uma opção</option>
       {dados.map((dt) => {
         return (
-          
           <option value={dt.name} key={dt.id}>
             {dt.name}
           </option>
