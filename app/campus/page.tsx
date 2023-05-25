@@ -1,18 +1,13 @@
 import BackButton from "../components/BackButton";
 import LinkButton from "../components/LinkButton";
 import IconTrash from "../components/icons/IconTrash";
+import DelBtn from "./components/DelBtn";
+import { getCampus } from "./services/getCampus";
 
 // export const revalidade = 0;
 
 export default async function Page() {
-   // TODO ao invés de fazer GET aqui, puxar os dados direto do prisma dentro de uma função e chamar a função
-  const resp = await fetch("/api/campus", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const campus: Campus[] = await resp.json();
+  const campus = await getCampus();
 
   return (
     <>
@@ -33,6 +28,7 @@ export default async function Page() {
                 >
                   {camp.name}
                   <IconTrash />
+                  <DelBtn id={camp.id}/>
                 </li>
               );
             })}
