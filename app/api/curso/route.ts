@@ -3,7 +3,6 @@ import prisma from "@/lib/prisma";
 export async function GET() {
   try {
     const resp = await prisma.curso.findMany();
-
     return new Response(JSON.stringify(resp), { status: 200 });
   } catch (error) {
     return new Response(JSON.stringify({ error: `${error}` }), { status: 500 });
