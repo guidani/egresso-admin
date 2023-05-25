@@ -2,7 +2,7 @@ import BackButton from "../components/BackButton";
 import LinkButton from "../components/LinkButton";
 import IconTrash from "../components/icons/IconTrash";
 
-export const revalidade = 0;
+// export const revalidade = 0;
 
 export default async function Page() {
    // TODO ao invés de fazer GET aqui, puxar os dados direto do prisma dentro de uma função e chamar a função
