@@ -14,11 +14,11 @@ export default function ListCourses() {
       .then(() => {
         setWasDeleted(true);
       })
-      .catch()
+      .catch();
   }
 
   useEffect(() => {
-    setWasDeleted(null)
+    setWasDeleted(null);
     const fetchData = async () => {
       const data = await fetch("/api/curso");
       const json = await data.json();

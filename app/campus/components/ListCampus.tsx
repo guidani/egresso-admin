@@ -14,8 +14,7 @@ export default function ListCampus() {
       .then(() => {
         setWasDeleted(true);
       })
-      .catch()
-      .finally(() => setWasDeleted(null));
+      .catch();
   }
 
   useEffect(() => {
