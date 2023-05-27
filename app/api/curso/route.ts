@@ -3,7 +3,11 @@ import prisma from "@/lib/prisma";
 export async function GET() {
   try {
     const resp = await prisma.curso.findMany();
-    return new Response(JSON.stringify(resp), { status: 200 });
+    return new Response(JSON.stringify(resp), {
+      status: 200,
+      statusText: "ok",
+      headers: { "Content-Type": "application/json" },
+    });
   } catch (error) {
     return new Response(JSON.stringify({ error: `${error}` }), { status: 500 });
   }
@@ -15,7 +19,11 @@ export async function POST(request: Request) {
     if (!name)
       return new Response(
         JSON.stringify({ message: "A propriedade [name] não foi encontrada." }),
-        { status: 400 }
+        {
+          status: 400,
+          statusText: "not found",
+          headers: { "Content-Type": "application/json" },
+        }
       );
 
     const resp = await prisma.curso.create({
@@ -25,7 +33,11 @@ export async function POST(request: Request) {
     });
     return new Response(
       JSON.stringify({ message: `Curso criado com o id ${resp.id}` }),
-      { status: 201 }
+      {
+        status: 201,
+        statusText: "ok",
+        headers: { "Content-Type": "application/json" },
+      }
     );
   } catch (error) {
     return new Response(
@@ -40,7 +52,7 @@ export async function POST(request: Request) {
 export async function DELETE(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-    const id = await searchParams.get("id") || "";
+    const id = (await searchParams.get("id")) || "";
 
     if (!id)
       return new Response(
