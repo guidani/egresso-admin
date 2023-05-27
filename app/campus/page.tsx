@@ -1,14 +1,8 @@
 import BackButton from "../components/BackButton";
 import LinkButton from "../components/LinkButton";
-import IconTrash from "../components/icons/IconTrash";
-import DelBtn from "./components/DelBtn";
-import { getCampus } from "./services/getCampus";
-
-// export const revalidade = 0;
+import ListCampus from "./components/ListCampus";
 
 export default async function Page() {
-  const campus = await getCampus();
-
   return (
     <>
       <div className="flex min-h-screen flex-col px-2">
@@ -19,20 +13,7 @@ export default async function Page() {
           <LinkButton label="Novo campus" to="/campus/novo-campus" />
         </div>
         <div className="bg-white p-2 border-t-8 border-green-700 mt-4">
-          <ul>
-            {campus.map((camp) => {
-              return (
-                <li
-                  key={camp.id}
-                  className=" border-b-2 border-slate-100 flex items-center justify-between py-2"
-                >
-                  {camp.name}
-                  <IconTrash />
-                  <DelBtn id={camp.id}/>
-                </li>
-              );
-            })}
-          </ul>
+          <ListCampus />
         </div>
       </div>
     </>
