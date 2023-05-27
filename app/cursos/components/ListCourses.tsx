@@ -22,9 +22,6 @@ export default function ListCourses() {
     const fetchData = async () => {
       const data = await fetch("/api/curso", { method: "GET" });
       const json = await data.json();
-      // console.log("🚀 ~ file: ListCourses.tsx:24 ~ fetchData ~ data:", data)
-      // console.log("🚀 ~ file: ListCourses.tsx:25 ~ fetchData ~ json data:",json.data)
-      // console.log("🚀 ~ file: ListCourses.tsx:25 ~ fetchData ~ json:",typeof json)
       setCursos(json.data);
     };
     fetchData().catch(console.error);

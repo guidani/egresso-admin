@@ -3,8 +3,6 @@ import prisma from "@/lib/prisma";
 export async function GET() {
   try {
     const resp = await prisma.curso.findMany();
-    // const jsonResp = await JSON.stringify([].concat(resp));
-    // const jsonArray = await Array.from(resp)
     const jsonResponse = {data: resp}
     return new Response(JSON.stringify(jsonResponse), {
       status: 200,
