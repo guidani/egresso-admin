@@ -29,17 +29,21 @@ export default function ListCourses() {
   }, [wasDeleted]);
   return (
     <ul>
-      {cursos.map((c) => {
-        return (
-          <li
-            key={c.id}
-            className=" border-b-2 border-slate-100 flex items-center justify-between py-2"
-          >
-            {c.name}
-            <button onClick={() => deleteCourse(c.id)}>DEL</button>
-          </li>
-        );
-      })}
+      {!cursos ? (
+        <div>Carregando...</div>
+      ) : (
+        cursos.map((c) => {
+          return (
+            <li
+              key={c.id}
+              className=" border-b-2 border-slate-100 flex items-center justify-between py-2"
+            >
+              {c.name}
+              <button onClick={() => deleteCourse(c.id)}>DEL</button>
+            </li>
+          );
+        })
+      )}
     </ul>
   );
 }
