@@ -20,17 +20,20 @@ export default function ListCourses() {
   useEffect(() => {
     setWasDeleted(null);
     const fetchData = async () => {
-      const data = await fetch("/api/curso");
+      const data = await fetch("/api/curso", { method: "GET" });
       const json = await data.json();
-      setCursos(json);
+      // console.log("🚀 ~ file: ListCourses.tsx:24 ~ fetchData ~ data:", data)
+      // console.log("🚀 ~ file: ListCourses.tsx:25 ~ fetchData ~ json data:",json.data)
+      // console.log("🚀 ~ file: ListCourses.tsx:25 ~ fetchData ~ json:",typeof json)
+      setCursos(json.data);
     };
-
     fetchData().catch(console.error);
   }, [wasDeleted]);
+
   return (
-    <ul>
+    <>
       {!cursos ? (
-        <div>Carregando...</div>
+        <li>Sem dados...</li>
       ) : (
         cursos.map((c) => {
           return (
@@ -44,6 +47,6 @@ export default function ListCourses() {
           );
         })
       )}
-    </ul>
+    </>
   );
 }

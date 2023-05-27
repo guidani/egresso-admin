@@ -13,7 +13,9 @@ export default async function Page() {
           <LinkButton label="Novo curso" to="/cursos/novo-curso" />
         </div>
         <div className="bg-white p-2 border-t-8 border-green-700 mt-4">
+          <ul>
           <ListCourses />
+          </ul>
         </div>
       </div>
     </>
