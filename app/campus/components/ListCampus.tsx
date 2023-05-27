@@ -19,26 +19,30 @@ export default function ListCampus() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetch("/api/campus");
+      const data = await fetch("/api/campus", { method: "GET" });
       const json = await data.json();
-      setCampus(json);
+      setCampus(json.data);
     };
 
     fetchData().catch(console.error);
   }, [wasDeleted]);
   return (
     <ul>
-      {campus.map((c) => {
-        return (
-          <li
-            key={c.id}
-            className=" border-b-2 border-slate-100 flex items-center justify-between py-2"
-          >
-            {c.name}
-            <button onClick={() => deleteCampus(c.id)}>DEL</button>
-          </li>
-        );
-      })}
+      {!campus ? (
+        <li>Sem dados...</li>
+      ) : (
+        campus.map((c) => {
+          return (
+            <li
+              key={c.id}
+              className=" border-b-2 border-slate-100 flex items-center justify-between py-2"
+            >
+              {c.name}
+              <button onClick={() => deleteCampus(c.id)}>DEL</button>
+            </li>
+          );
+        })
+      )}
     </ul>
   );
 }
