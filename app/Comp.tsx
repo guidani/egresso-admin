@@ -7,10 +7,12 @@ type Props = {
   updatedAt: Date;
 };
 
-export default function Comp({dados}: {dados: Props[]}) {
+export default function Comp({ dados }: { dados: Props[] }) {
   return (
     <select name="" id="">
-      <option hidden disabled selected>Selecione uma opção</option>
+      <option hidden disabled selected>
+        Selecione uma opção
+      </option>
       {dados.map((dt) => {
         return (
           <option value={dt.name} key={dt.id}>

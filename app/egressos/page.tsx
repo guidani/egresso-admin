@@ -1,4 +1,4 @@
-import BackButton from "../components/BackButton";
+import Link from "next/link";
 import EgressoLista from "./components/EgressoLista";
 import { getEgressoForm } from "./services/getEgressoForm";
 
@@ -11,7 +11,16 @@ export default async function Page() {
   return (
     <>
       <div className="flex min-h-screen flex-col px-2 mb-4">
-        <BackButton />
+        {/*  */}
+        <div className="text-sm breadcrumbs">
+          <ul>
+            <li>
+              <Link href={"/"}>Início</Link>
+            </li>
+            <li>Egressos</li>
+          </ul>
+        </div>
+        {/*  */}
         <h1 className="mt-4 mb-2 text-2xl">Egressos</h1>
         <hr />
         <EgressoLista egressos={lista_de_egressos} />

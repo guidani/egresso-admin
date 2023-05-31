@@ -36,8 +36,11 @@ export default function EgressoLista({ egressos }: PageProps) {
               return (
                 <tr key={egresso.id} className="hover">
                   <th>
-                    <label >
-                      <button type="button" className="btn btn-square bg-red-700">
+                    <label>
+                      <button
+                        type="button"
+                        className="btn btn-square bg-red-700"
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"

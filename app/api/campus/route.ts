@@ -3,7 +3,7 @@ import prisma from "@/lib/prisma";
 export async function GET() {
   try {
     const resp = await prisma.campus.findMany();
-    const jsonResponse = {data: resp}
+    const jsonResponse = { data: resp };
     return new Response(JSON.stringify(jsonResponse), {
       status: 200,
       statusText: "ok",

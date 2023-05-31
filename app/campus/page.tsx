@@ -1,4 +1,4 @@
-import BackButton from "../components/BackButton";
+import Link from "next/link";
 import LinkButton from "../components/LinkButton";
 import ListCampus from "./components/ListCampus";
 
@@ -6,7 +6,17 @@ export default async function Page() {
   return (
     <>
       <div className="flex min-h-screen flex-col px-2">
-        <BackButton />
+        
+        {/*  */}
+        <div className="text-sm breadcrumbs">
+          <ul>
+            <li>
+              <Link href={"/"}>Início</Link>
+            </li>
+            <li>Campus</li>
+          </ul>
+        </div>
+        {/*  */}
         <h1 className="mt-4 mb-2 text-2xl">Campus</h1>
         <hr />
         <div className="flex flex-col md:flex-row gap-4 mt-4">

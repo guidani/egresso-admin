@@ -2,7 +2,6 @@ import { Inter } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import LogoIfpi from "../public/topo_ifpi.png";
-import Navbar from "./components/Navbar";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -17,7 +16,6 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  
   return (
     <html lang="pt-br">
       <body className={inter.className}>
@@ -28,9 +26,7 @@ export default async function RootLayout({
             </Link>
           </div>
         </header>
-        <div className="container mx-auto">
-          {children}
-        </div>
+        <div className="container mx-auto">{children}</div>
       </body>
     </html>
   );

@@ -1,5 +1,4 @@
 "use client";
-import BackButton from "@/app/components/BackButton";
 import Link from "next/link";
 import { ChangeEvent, useState } from "react";
 
@@ -41,7 +40,20 @@ export default function Page() {
   return (
     <>
       <div className="flex min-h-screen flex-col px-2">
-        <BackButton />
+        {/*  */}
+        <div className="text-sm breadcrumbs">
+          <ul>
+            <li>
+              
+              <Link href={'/'}>Início</Link>
+            </li>
+            <li>
+            <Link href={'/cursos'}>Cursos</Link>
+            </li>
+            <li>Novo Curso</li>
+          </ul>
+        </div>
+        {/*  */}
         <h1 className="mt-4 mb-2 text-2xl">Adicionar novo curso</h1>
         <hr />
         <div className="bg-white px-4 md:px-16 py-4 border-t-8 border-green-700">

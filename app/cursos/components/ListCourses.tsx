@@ -40,7 +40,7 @@ export default function ListCourses() {
               className=" border-b-2 border-slate-100 flex items-center justify-between py-2"
             >
               {c.name}
-              <DelButton handleClick={() => deleteCourse(c.id)}/>
+              <DelButton handleClick={() => deleteCourse(c.id)} />
               {/* <button
                 type="button"
                 className="btn btn-square bg-red-700"
