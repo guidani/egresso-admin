@@ -1,5 +1,6 @@
 "use client";
 
+import DelButton from "@/app/components/DelButton";
 import { useEffect, useState } from "react";
 
 export default function ListCampus() {
@@ -38,7 +39,8 @@ export default function ListCampus() {
               className=" border-b-2 border-slate-100 flex items-center justify-between py-2"
             >
               {c.name}
-              <button onClick={() => deleteCampus(c.id)}>DEL</button>
+              <DelButton handleClick={() => deleteCampus(c.id)}/>
+              {/* <button onClick={() => deleteCampus(c.id)}>DEL</button> */}
             </li>
           );
         })

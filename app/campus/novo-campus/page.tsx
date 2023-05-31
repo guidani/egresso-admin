@@ -49,26 +49,28 @@ export default function Page() {
         <hr />
         <div className="bg-white px-4 md:px-16 py-4 border-t-8 border-green-700">
           <div id="form" className="flex flex-col">
-            <label htmlFor="nomeCampus">Nome do campus</label>
+          <label htmlFor="nomeCurso" className="label">
+              <span className="label-text">Nome do campus</span>
+            </label>
             <input
               type="text"
               name="nomeCampus"
               id="nomeCampus"
               autoFocus
-              className="border rounded-md border-slate-900 text-lg p-2"
+              className="input input-bordered w-full"
               onChange={(e) => handleChange(e)}
             />
             {isEmpty && <span className="text-red-500">Este campo não pode ser vazio</span>}
 
             <div className="flex gap-2 mt-2 justify-end">
               <Link href={"/campus"}>
-                <button className="bg-red-700 rounded-md px-8 py-2 text-white">
+                <button className="btn btn-error btn-active hover:opacity-80">
                   cancelar
                 </button>
               </Link>
               <button
                 onClick={addCampusToDatabase}
-                className="bg-green-700 rounded-md px-8 py-2 text-white"
+                className="btn  btn-success hover:opacity-80"
               >
                 adicionar
               </button>
