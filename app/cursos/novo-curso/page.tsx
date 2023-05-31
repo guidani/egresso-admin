@@ -9,8 +9,8 @@ export default function Page() {
 
   async function fetchCursoToDatabase() {
     try {
-      if(!name){
-        setIsEmpty(true)
+      if (!name) {
+        setIsEmpty(true);
         return;
       }
       const body = { name };
@@ -19,15 +19,17 @@ export default function Page() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-      if(resp.ok){
-        setName("")
-        if(confirm("Curso adicionado com sucesso!")){
-          setName("")
-            window.location.reload()
+      if (resp.ok) {
+        setName("");
+        if (confirm("Curso adicionado com sucesso!")) {
+          setName("");
+          window.location.reload();
         }
       }
     } catch (error) {
-      return JSON.stringify({msg: "Ocorreu um erro inesperado. Tente novamente."})
+      return JSON.stringify({
+        msg: "Ocorreu um erro inesperado. Tente novamente.",
+      });
     }
   }
 
@@ -44,25 +46,31 @@ export default function Page() {
         <hr />
         <div className="bg-white px-4 md:px-16 py-4 border-t-8 border-green-700">
           <div id="form" className="flex flex-col">
-            <label htmlFor="nomeCurso">Nome do curso</label>
+            <label htmlFor="nomeCurso" className="label">
+              <span className="label-text">Nome do curso</span>
+            </label>
             <input
               type="text"
               name="nomeCurso"
               id="nomeCurso"
               autoFocus
-              className="border rounded-md border-slate-900 text-lg p-2"
+              className="input input-bordered w-full"
               onChange={(e) => handleChange(e)}
             />
-            {isEmpty && <span className="text-red-500">Este campo não pode ser vazio</span>}
+            {isEmpty && (
+              <span className="text-red-500">
+                Este campo não pode ser vazio
+              </span>
+            )}
             <div className="flex gap-2 mt-2 justify-end">
               <Link href={"/cursos"}>
-                <button className="bg-red-700 rounded-md px-8 py-2 text-white">
+                <button className="btn btn-error btn-active hover:opacity-80">
                   cancelar
                 </button>
               </Link>
               <button
                 onClick={fetchCursoToDatabase}
-                className="bg-green-700 rounded-md px-8 py-2 text-white"
+                className="btn  btn-success hover:opacity-80"
               >
                 adicionar
               </button>
