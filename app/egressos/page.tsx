@@ -1,12 +1,11 @@
 import Link from "next/link";
 import EgressoLista from "./components/EgressoLista";
-import { getEgressoForm } from "./services/getEgressoForm";
 
 export const revalidate = 10;
 
 export default async function Page() {
-  const egressos = await getEgressoForm();
-  const lista_de_egressos = egressos.data;
+  // const egressos = await getEgressoForm();
+  // const lista_de_egressos = egressos.data;
 
   return (
     <>
@@ -23,7 +22,7 @@ export default async function Page() {
         {/*  */}
         <h1 className="mt-4 mb-2 text-2xl">Egressos</h1>
         <hr />
-        <EgressoLista egressos={lista_de_egressos} />
+        <EgressoLista />
       </div>
     </>
   );
