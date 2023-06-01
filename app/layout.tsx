@@ -19,11 +19,12 @@ export default async function RootLayout({
   return (
     <html lang="pt-br">
       <body className={inter.className}>
-        <header className="w-full bg-green-900 h-16">
+        <header className="w-full bg-green-500 h-16">
           <div className="container mx-auto flex items-center">
             <Link href={"/"}>
               <Image src={LogoIfpi} alt="Logo ifpi" width={64} height={64} />
             </Link>
+            <p className="text-2xl ml-4 text-white">Sistema Egressos</p>
           </div>
         </header>
         <div className="container mx-auto">{children}</div>
