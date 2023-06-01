@@ -1,10 +1,10 @@
 import prisma from "@/lib/prisma";
 
-export async function TotalConclusaoPorCurso() {
+export async function AvaliacaoCurso() {
   const resp = await prisma.egressoForm.groupBy({
-    by: ["curso_realizado"],
+    by: ["avaliacao_curso", "curso_realizado"],
     _count: {
-      curso_realizado: true,
+      avaliacao_curso: true,
     },
   });
 
