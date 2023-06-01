@@ -12,6 +12,7 @@ import { AtuaStartUp } from "./utils/AtuaStartUp";
 import { RendimentoMedioMensal } from "./utils/RendimentoMedioMensal";
 import { SatisfacaoRendaAtual } from "./utils/SatisfacaoRendaAtual";
 import { TrabalhoTipoPlataforma } from "./utils/TrabalhoTipoPlataforma";
+import { TipoContrato } from "./utils/TipoContrato";
 
 export const revalidate = 60;
 
@@ -28,6 +29,7 @@ export default async function Relatorios() {
   const rendimento_medio_mensal = await RendimentoMedioMensal();
   const satisfacao_renda_atual = await SatisfacaoRendaAtual();
   const trabalho_tipo_plataforma = await TrabalhoTipoPlataforma();
+  const tipo_contrato = await TipoContrato();
 
   return (
     <>
@@ -199,6 +201,20 @@ export default async function Relatorios() {
                     key={index}
                     title={campo.tipo_plataforma?.replaceAll("_", " ")}
                     value={campo._count.tipo_plataforma}
+                  />
+                );
+              })}
+            </div>
+          </section>
+          <section>
+            <h2>Tipo de Contrato</h2>
+            <div className="flex">
+              {tipo_contrato.map((campo, index) => {
+                return (
+                  <Stats
+                    key={index}
+                    title={campo.tipo_contrato?.replaceAll("_", " ")}
+                    value={campo._count.tipo_contrato}
                   />
                 );
               })}
