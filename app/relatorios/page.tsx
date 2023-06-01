@@ -3,6 +3,7 @@ import Stats from "./components/Stats";
 import { TotalDeCadastros } from "./utils/TotalDeCadastros";
 import { TotaldeGeneros } from "./utils/TotalDeGeneros";
 import { TotalConclusaoPorCampus } from "./utils/TotalConclusaoPorCampus";
+import { TotalConclusaoPorCurso } from "./utils/TotalConclusaoPorCurso";
 
 export const revalidate = 60;
 
@@ -10,6 +11,7 @@ export default async function Relatorios() {
   const total_de_cadastros = await TotalDeCadastros();
   const total_generos = await TotaldeGeneros();
   const total_conclusao_por_campus = await TotalConclusaoPorCampus();
+  const total_conclusao_por_curso = await TotalConclusaoPorCurso();
 
   return (
     <>
@@ -54,6 +56,20 @@ export default async function Relatorios() {
                     key={index}
                     title={campo.campus_conclusao_curso?.replaceAll("_", " ")}
                     value={campo._count.campus_conclusao_curso}
+                  />
+                );
+              })}
+            </div>
+          </section>
+          <section>
+            <h2>Por Curso</h2>
+            <div className="flex">
+              {total_conclusao_por_curso.map((campo, index) => {
+                return (
+                  <Stats
+                    key={index}
+                    title={campo.curso_realizado?.replaceAll("_", " ")}
+                    value={campo._count.curso_realizado}
                   />
                 );
               })}
