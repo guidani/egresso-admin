@@ -14,6 +14,7 @@ import { SatisfacaoRendaAtual } from "./utils/SatisfacaoRendaAtual";
 import { TrabalhoTipoPlataforma } from "./utils/TrabalhoTipoPlataforma";
 import { TipoContrato } from "./utils/TipoContrato";
 import { ModalidadeTrabalho } from "./utils/ModalidadeTrabalho";
+import { TempoExperiencia } from "./utils/TempoExperiencia";
 
 export const revalidate = 60;
 
@@ -32,6 +33,7 @@ export default async function Relatorios() {
   const trabalho_tipo_plataforma = await TrabalhoTipoPlataforma();
   const tipo_contrato = await TipoContrato();
   const modalidade_trabalho = await ModalidadeTrabalho()
+  const tempo_experiencia = await TempoExperiencia();
 
   return (
     <>
@@ -231,6 +233,20 @@ export default async function Relatorios() {
                     key={index}
                     title={campo.modalidade_trabalho?.replaceAll("_", " ")}
                     value={campo._count.modalidade_trabalho}
+                  />
+                );
+              })}
+            </div>
+          </section>
+          <section>
+            <h2>Tempo de experiência</h2>
+            <div className="flex">
+              {tempo_experiencia.map((campo, index) => {
+                return (
+                  <Stats
+                    key={index}
+                    title={campo.tempo_exp?.replaceAll("_", " ")}
+                    value={campo._count.tempo_exp}
                   />
                 );
               })}
