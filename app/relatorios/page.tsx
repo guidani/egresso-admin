@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Stats from "./components/Stats";
 
 export default function Relatorios() {
   return (
@@ -16,6 +17,9 @@ export default function Relatorios() {
         {/*  */}
         <h1 className="mt-4 mb-2 text-2xl">Relatórios</h1>
         <hr />
+        <div className="grid">
+            <Stats title={'Total de cadastros'} value={99}/>
+        </div>
       </div>
     </>
   );
