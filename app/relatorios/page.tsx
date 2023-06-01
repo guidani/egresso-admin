@@ -1,10 +1,11 @@
 import Link from "next/link";
 import Stats from "./components/Stats";
-import { TotalDeCadastros } from "./utils/TotalDeCadastros";
-import { TotaldeGeneros } from "./utils/TotalDeGeneros";
+import { AvaliacaoCurso } from "./utils/AvaliacaoCurso";
+import { SituacaoTrabalhoEstudos } from "./utils/SituacaoTrabalhoEstudos";
 import { TotalConclusaoPorCampus } from "./utils/TotalConclusaoPorCampus";
 import { TotalConclusaoPorCurso } from "./utils/TotalConclusaoPorCurso";
-import { AvaliacaoCurso } from "./utils/AvaliacaoCurso";
+import { TotalDeCadastros } from "./utils/TotalDeCadastros";
+import { TotaldeGeneros } from "./utils/TotalDeGeneros";
 
 export const revalidate = 60;
 
@@ -14,6 +15,7 @@ export default async function Relatorios() {
   const total_conclusao_por_campus = await TotalConclusaoPorCampus();
   const total_conclusao_por_curso = await TotalConclusaoPorCurso();
   const avaliacao_curso = await AvaliacaoCurso();
+  const situacao_trabalho_estudos = await SituacaoTrabalhoEstudos();
 
   return (
     <>
@@ -87,6 +89,20 @@ export default async function Relatorios() {
                     title={campo.avaliacao_curso?.replaceAll("_", " ")}
                     value={campo._count.avaliacao_curso}
                     description={campo.curso_realizado?.replaceAll("_", " ")}
+                  />
+                );
+              })}
+            </div>
+          </section>
+          <section>
+            <h2>Situação quanto a trabalho e estudos</h2>
+            <div className="flex">
+              {situacao_trabalho_estudos.map((campo, index) => {
+                return (
+                  <Stats
+                    key={index}
+                    title={campo.situacao_trabalho_estudo?.replaceAll("_", " ")}
+                    value={campo._count.situacao_trabalho_estudo}
                   />
                 );
               })}
