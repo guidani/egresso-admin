@@ -9,6 +9,9 @@ import { TotalDeCadastros } from "./utils/TotalDeCadastros";
 import { TotaldeGeneros } from "./utils/TotalDeGeneros";
 import { SegmentoMercadoAtuacao } from "./utils/SegmentoMercadoAtuacao";
 import { AtuaStartUp } from "./utils/AtuaStartUp";
+import { RendimentoMedioMensal } from "./utils/RendimentoMedioMensal";
+import { SatisfacaoRendaAtual } from "./utils/SatisfacaoRendaAtual";
+import { TrabalhoTipoPlataforma } from "./utils/TrabalhoTipoPlataforma";
 
 export const revalidate = 60;
 
@@ -22,6 +25,9 @@ export default async function Relatorios() {
   const setor_atuacao = await SetorAtuacao();
   const segmento_mercado_atuacao = await SegmentoMercadoAtuacao();
   const atuacao_startup = await AtuaStartUp();
+  const rendimento_medio_mensal = await RendimentoMedioMensal();
+  const satisfacao_renda_atual = await SatisfacaoRendaAtual();
+  const trabalho_tipo_plataforma = await TrabalhoTipoPlataforma();
 
   return (
     <>
@@ -151,6 +157,48 @@ export default async function Relatorios() {
                     key={index}
                     title={campo.atua_startup?.replaceAll("_", " ")}
                     value={campo._count.atua_startup}
+                  />
+                );
+              })}
+            </div>
+          </section>
+          <section>
+            <h2>Rendimento medio mensal</h2>
+            <div className="flex">
+              {rendimento_medio_mensal.map((campo, index) => {
+                return (
+                  <Stats
+                    key={index}
+                    title={campo.rendimento_medio?.replaceAll("_", " ")}
+                    value={campo._count.rendimento_medio}
+                  />
+                );
+              })}
+            </div>
+          </section>
+          <section>
+            <h2>Satisfação com a renda atual</h2>
+            <div className="flex">
+              {satisfacao_renda_atual.map((campo, index) => {
+                return (
+                  <Stats
+                    key={index}
+                    title={campo.satisfacao_renda_atual?.replaceAll("_", " ")}
+                    value={campo._count.satisfacao_renda_atual}
+                  />
+                );
+              })}
+            </div>
+          </section>
+          <section>
+            <h2>Tipo de plataforma em que trabalha</h2>
+            <div className="flex">
+              {trabalho_tipo_plataforma.map((campo, index) => {
+                return (
+                  <Stats
+                    key={index}
+                    title={campo.tipo_plataforma?.replaceAll("_", " ")}
+                    value={campo._count.tipo_plataforma}
                   />
                 );
               })}
