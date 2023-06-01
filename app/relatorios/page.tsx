@@ -1,11 +1,13 @@
 import Link from "next/link";
 import Stats from "./components/Stats";
 import { AvaliacaoCurso } from "./utils/AvaliacaoCurso";
+import { SetorAtuacao } from "./utils/SetorAtuacao";
 import { SituacaoTrabalhoEstudos } from "./utils/SituacaoTrabalhoEstudos";
 import { TotalConclusaoPorCampus } from "./utils/TotalConclusaoPorCampus";
 import { TotalConclusaoPorCurso } from "./utils/TotalConclusaoPorCurso";
 import { TotalDeCadastros } from "./utils/TotalDeCadastros";
 import { TotaldeGeneros } from "./utils/TotalDeGeneros";
+import { SegmentoMercadoAtuacao } from "./utils/SegmentoMercadoAtuacao";
 
 export const revalidate = 60;
 
@@ -16,6 +18,8 @@ export default async function Relatorios() {
   const total_conclusao_por_curso = await TotalConclusaoPorCurso();
   const avaliacao_curso = await AvaliacaoCurso();
   const situacao_trabalho_estudos = await SituacaoTrabalhoEstudos();
+  const setor_atuacao = await SetorAtuacao();
+  const segmento_mercado_atuacao = await SegmentoMercadoAtuacao();
 
   return (
     <>
@@ -103,6 +107,34 @@ export default async function Relatorios() {
                     key={index}
                     title={campo.situacao_trabalho_estudo?.replaceAll("_", " ")}
                     value={campo._count.situacao_trabalho_estudo}
+                  />
+                );
+              })}
+            </div>
+          </section>
+          <section>
+            <h2>Setor de atuação</h2>
+            <div className="flex">
+              {setor_atuacao.map((campo, index) => {
+                return (
+                  <Stats
+                    key={index}
+                    title={campo.setor_atuacao?.replaceAll("_", " ")}
+                    value={campo._count.setor_atuacao}
+                  />
+                );
+              })}
+            </div>
+          </section>
+          <section>
+            <h2>Segmento de Mercado Atuação</h2>
+            <div className="flex">
+              {segmento_mercado_atuacao.map((campo, index) => {
+                return (
+                  <Stats
+                    key={index}
+                    title={campo.segmento_mercado?.replaceAll("_", " ")}
+                    value={campo._count.segmento_mercado}
                   />
                 );
               })}
