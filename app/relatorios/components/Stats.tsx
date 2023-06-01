@@ -6,7 +6,7 @@ type Props = {
 
 export default function Stats({description ,title ,value }: Props) {
   return (
-    <div className="stat">
+    <div className="stat border-2 rounded-md">
       <div className="stat-title">{title}</div>
       <div className="stat-value">{value}</div>
       <div className="stat-desc">{description}</div>
