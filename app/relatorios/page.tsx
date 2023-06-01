@@ -8,6 +8,7 @@ import { TotalConclusaoPorCurso } from "./utils/TotalConclusaoPorCurso";
 import { TotalDeCadastros } from "./utils/TotalDeCadastros";
 import { TotaldeGeneros } from "./utils/TotalDeGeneros";
 import { SegmentoMercadoAtuacao } from "./utils/SegmentoMercadoAtuacao";
+import { AtuaStartUp } from "./utils/AtuaStartUp";
 
 export const revalidate = 60;
 
@@ -20,6 +21,7 @@ export default async function Relatorios() {
   const situacao_trabalho_estudos = await SituacaoTrabalhoEstudos();
   const setor_atuacao = await SetorAtuacao();
   const segmento_mercado_atuacao = await SegmentoMercadoAtuacao();
+  const atuacao_startup = await AtuaStartUp();
 
   return (
     <>
@@ -135,6 +137,20 @@ export default async function Relatorios() {
                     key={index}
                     title={campo.segmento_mercado?.replaceAll("_", " ")}
                     value={campo._count.segmento_mercado}
+                  />
+                );
+              })}
+            </div>
+          </section>
+          <section>
+            <h2>Atuação em StartUp</h2>
+            <div className="flex">
+              {atuacao_startup.map((campo, index) => {
+                return (
+                  <Stats
+                    key={index}
+                    title={campo.atua_startup?.replaceAll("_", " ")}
+                    value={campo._count.atua_startup}
                   />
                 );
               })}
