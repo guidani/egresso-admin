@@ -86,6 +86,7 @@ export default async function Relatorios() {
                     key={index}
                     title={campo.avaliacao_curso?.replaceAll("_", " ")}
                     value={campo._count.avaliacao_curso}
+                    description={campo.curso_realizado?.replaceAll("_", " ")}
                   />
                 );
               })}

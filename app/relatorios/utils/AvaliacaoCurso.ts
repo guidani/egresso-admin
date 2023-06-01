@@ -5,6 +5,7 @@ export async function AvaliacaoCurso() {
     by: ["avaliacao_curso", "curso_realizado"],
     _count: {
       avaliacao_curso: true,
+      curso_realizado: true
     },
   });
 
