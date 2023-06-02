@@ -55,6 +55,7 @@ export default async function Relatorios() {
           <section>
             <h2>Cadastros</h2>
             <Stats title={"Total de cadastros"} value={total_de_cadastros} />
+            <div className="divider"></div>
           </section>
           {/*  */}
           <StatsContainer title="Por gênero">
