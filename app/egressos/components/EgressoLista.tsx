@@ -13,13 +13,16 @@ export default function EgressoLista() {
   const [wasDeleted, setWasDeleted] = useState<boolean | null>(null);
 
   async function deleteEgressoForm(id: string) {
-    return await fetch("/api/egresso" + `?id=${id}`, {
-      method: "DELETE",
-    })
+    if(confirm("Tem certeza que deseja apagar essa entrada?")){
+
+      return await fetch("/api/egresso" + `?id=${id}`, {
+        method: "DELETE",
+      })
       .then(() => {
         setWasDeleted(true);
       })
       .catch();
+    } 
   }
 
   useEffect(() => {
@@ -38,7 +41,7 @@ export default function EgressoLista() {
         <table className="table table-compact table-zebra w-full">
           <thead>
             <tr className="">
-              <th>Apagar</th>
+              <th>Ações</th>
               <th>Nome</th>
               <th>Email</th>
               <th>Genero</th>
@@ -63,13 +66,13 @@ export default function EgressoLista() {
             {egressosForm?.map((egresso) => {
               return (
                 <tr key={egresso.id} className="hover">
-                  <th>
+                  <td>
                     <label>
                       <DelButton
                         handleClick={() => deleteEgressoForm(egresso.id)}
                       />
                     </label>
-                  </th>
+                  </td>
                   <td>{egresso.nome}</td>
                   <td>{egresso.email}</td>
                   <td>{egresso.genero}</td>

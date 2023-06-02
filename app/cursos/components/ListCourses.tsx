@@ -9,13 +9,16 @@ export default function ListCourses() {
   const [wasDeleted, setWasDeleted] = useState<boolean | null>(null);
 
   async function deleteCourse(id: string) {
-    return await fetch("/api/curso" + `?id=${id}`, {
-      method: "DELETE",
-    })
+    if(confirm("Tem certeza que deseja apagar essa entrada?")){
+
+      return await fetch("/api/curso" + `?id=${id}`, {
+        method: "DELETE",
+      })
       .then(() => {
         setWasDeleted(true);
       })
       .catch();
+    }
   }
 
   useEffect(() => {
