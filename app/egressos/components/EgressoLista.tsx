@@ -38,6 +38,7 @@ export default function EgressoLista() {
         <table className="table table-compact table-zebra w-full">
           <thead>
             <tr className="">
+              <th>Apagar</th>
               <th>Nome</th>
               <th>Email</th>
               <th>Genero</th>
