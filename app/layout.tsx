@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import LogoIfpi from "../public/topo_ifpi.png";
 import "./globals.css";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 

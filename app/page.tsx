@@ -10,9 +10,6 @@ export default async function Home() {
       <h1 className="mt-4 mb-2 text-2xl">Painel Administrativo</h1>
       <hr />
       <div className="flex flex-col md:flex-row gap-4 mt-4">
-        {/* <LinkButton to="/cursos" label="Cursos" icon={<IconBook />} />
-        <LinkButton to="/campus" label="Campus" icon={<IconBuilding />} />
-        <LinkButton to="/egressos" label="Egressos" icon={<IconEgresso />} /> */}
         <LinkCardButton
           label="Cursos"
           to="/cursos"
