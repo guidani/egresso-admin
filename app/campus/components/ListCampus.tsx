@@ -1,6 +1,6 @@
 "use client";
 
-import DelButton from "@/app/components/DelButton";
+import DelButton from "@/app/shared/DelButton";
 import { useEffect, useState } from "react";
 
 export default function ListCampus() {
@@ -9,15 +9,14 @@ export default function ListCampus() {
   const [wasDeleted, setWasDeleted] = useState<boolean | null>(null);
 
   async function deleteCampus(id: string) {
-    if(confirm("Tem certeza que deseja apagar essa entrada?")){
-
+    if (confirm("Tem certeza que deseja apagar essa entrada?")) {
       return await fetch("/api/campus" + `?id=${id}`, {
         method: "DELETE",
       })
-      .then(() => {
-        setWasDeleted(true);
-      })
-      .catch();
+        .then(() => {
+          setWasDeleted(true);
+        })
+        .catch();
     }
   }
 
@@ -42,7 +41,7 @@ export default function ListCampus() {
               className=" border-b-2 border-slate-100 flex items-center justify-between py-2"
             >
               {c.name}
-              <DelButton handleClick={() => deleteCampus(c.id)}/>
+              <DelButton handleClick={() => deleteCampus(c.id)} />
               {/* <button onClick={() => deleteCampus(c.id)}>DEL</button> */}
             </li>
           );

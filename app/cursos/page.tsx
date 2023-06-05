@@ -1,5 +1,5 @@
 import Link from "next/link";
-import LinkButton from "../components/LinkButton";
+import LinkButton from "../shared/LinkButton";
 import ListCourses from "./components/ListCourses";
 
 export default async function Page() {

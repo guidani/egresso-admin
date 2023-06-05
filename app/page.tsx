@@ -1,8 +1,8 @@
-import LinkCardButton from "./components/LinkCardButton";
-import IconRelatorio from "./components/icons/IconRelatorio";
-import IconBook from "./components/icons/iconBook";
-import IconBuilding from "./components/icons/iconBuilding";
-import IconEgresso from "./components/icons/iconEgresso";
+import LinkCardButton from "./shared/LinkCardButton";
+import IconRelatorio from "./shared/icons/IconRelatorio";
+import IconBook from "./shared/icons/iconBook";
+import IconBuilding from "./shared/icons/iconBuilding";
+import IconEgresso from "./shared/icons/iconEgresso";
 
 export default async function Home() {
   return (

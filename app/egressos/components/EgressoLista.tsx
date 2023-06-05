@@ -1,6 +1,6 @@
 "use client";
 
-import DelButton from "@/app/components/DelButton";
+import DelButton from "@/app/shared/DelButton";
 import { useEffect, useState } from "react";
 
 type PageProps = {
@@ -13,16 +13,15 @@ export default function EgressoLista() {
   const [wasDeleted, setWasDeleted] = useState<boolean | null>(null);
 
   async function deleteEgressoForm(id: string) {
-    if(confirm("Tem certeza que deseja apagar essa entrada?")){
-
+    if (confirm("Tem certeza que deseja apagar essa entrada?")) {
       return await fetch("/api/egresso" + `?id=${id}`, {
         method: "DELETE",
       })
-      .then(() => {
-        setWasDeleted(true);
-      })
-      .catch();
-    } 
+        .then(() => {
+          setWasDeleted(true);
+        })
+        .catch();
+    }
   }
 
   useEffect(() => {

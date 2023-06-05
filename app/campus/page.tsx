@@ -1,12 +1,11 @@
 import Link from "next/link";
-import LinkButton from "../components/LinkButton";
+import LinkButton from "../shared/LinkButton";
 import ListCampus from "./components/ListCampus";
 
 export default async function Page() {
   return (
     <>
       <div className="flex min-h-screen flex-col px-2">
-        
         {/*  */}
         <div className="text-sm breadcrumbs">
           <ul>
