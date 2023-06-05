@@ -52,6 +52,13 @@
     snakecase-keys "3.2.1"
     tslib "2.4.1"
 
+"@clerk/localizations@^1.16.0":
+  version "1.16.0"
+  resolved "https://registry.yarnpkg.com/@clerk/localizations/-/localizations-1.16.0.tgz#b55858bea108acc48915bb1f555762a78cd7c698"
+  integrity sha512-b0a3hDF+EIgtnO15lf/7xBak4HruOWBjfStECnYt3y7tQDHqz1YcEhgAd6FJJzzzlWLjD1X+qjTZ/nZwvPRM0g==
+  dependencies:
+    "@clerk/types" "^3.40.0"
+
 "@clerk/nextjs@^4.19.0":
   version "4.19.0"
   resolved "https://registry.yarnpkg.com/@clerk/nextjs/-/nextjs-4.19.0.tgz#7642c2f9f758f6a1760990963ff9d2aa8ecee791"
